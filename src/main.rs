@@ -1,3 +1,5 @@
+mod puzzles;
+
 use std::env;
 
 fn main() {
@@ -8,7 +10,5 @@ fn main() {
         .parse()
         .expect("Only use a single number to specify what day's puzzle to run.");
 
-    match day {
-        _ => println!("Sorry, this puzzle is not implemented yet."),
-    }
+    puzzles::run(day);
 }
