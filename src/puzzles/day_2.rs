@@ -14,8 +14,6 @@ pub fn part_1() {
     let mut matches = 0;
 
     while let Some(Ok(line)) = lines.next() {
-        print!("{}", line);
-
         // Extract password rule and password from line.
         let caps = regex.captures(line.as_str()).unwrap();
         let letter = caps.get(3).unwrap().as_str();
@@ -40,10 +38,7 @@ pub fn part_1() {
 
         // Check if the password matches the rule.
         if r.is_match(password) {
-            println!(" is a match!");
             matches += 1;
-        } else {
-            println!(" is not a match...");
         }
     }
 
@@ -61,8 +56,6 @@ pub fn part_2() {
     let mut matches = 0;
 
     while let Some(Ok(line)) = lines.next() {
-        print!("{}", line);
-
         // Extract password rule and password from line.
         let caps = regex.captures(line.as_str()).unwrap();
         let letter = caps.get(3).unwrap().as_str().chars().next().unwrap();
@@ -74,10 +67,7 @@ pub fn part_2() {
         if (password[first - 1] == letter && password[second - 1] != letter)
             || (password[first - 1] != letter && password[second - 1] == letter)
         {
-            println!(" is a match!");
             matches += 1;
-        } else {
-            println!(" is not a match...");
         }
     }
 
