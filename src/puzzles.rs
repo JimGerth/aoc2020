@@ -1,6 +1,7 @@
 mod day_1;
 mod day_2;
 mod day_3;
+mod day_4;
 
 pub fn run(day: i32) {
     match day {
@@ -18,6 +19,11 @@ pub fn run(day: i32) {
             println!("Running puzzle from day 3...");
             day_3::part_1();
             day_3::part_2();
+        }
+        4 => {
+            println!("Running puzzle from day 4...");
+            day_4::part_1();
+            day_4::part_2();
         }
         _ => println!("Sorry, this puzzle is not implemented yet."),
     }
