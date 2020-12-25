@@ -22,18 +22,18 @@ pub fn part_1() {
         let password = caps.get(4).unwrap().as_str();
 
         // Create regex ^([^<letter>]*<letter>[^<letter>]*){<min>,<max>}$.
-        let mut a = String::new();
-        a.push_str("^([^");
-        a.push_str(letter);
-        a.push_str("]*");
-        a.push_str(letter);
-        a.push_str("[^");
-        a.push_str(letter);
-        a.push_str("]*){");
-        a.push_str(min);
-        a.push_str(",");
-        a.push_str(max);
-        a.push_str("}$");
+        let a = String::new()
+            + "^([^"
+            + letter
+            + "]*"
+            + letter
+            + "[^"
+            + letter
+            + "]*){"
+            + min
+            + ","
+            + max
+            + "}$";
         let r = Regex::new(&a).unwrap();
 
         // Check if the password matches the rule.
