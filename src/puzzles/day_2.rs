@@ -3,7 +3,7 @@ use std::io::{self, BufRead};
 
 use regex::Regex;
 
-pub fn part_1() {
+pub fn part_1() -> i32 {
     let file = File::open("src/inputs/day_2.txt").unwrap();
     let mut lines = io::BufReader::new(file).lines();
 
@@ -42,10 +42,10 @@ pub fn part_1() {
         }
     }
 
-    println!("The answer to part 1 is: There are {} matches.", matches);
+    matches
 }
 
-pub fn part_2() {
+pub fn part_2() -> i32 {
     let file = File::open("src/inputs/day_2.txt").unwrap();
     let mut lines = io::BufReader::new(file).lines();
 
@@ -71,5 +71,5 @@ pub fn part_2() {
         }
     }
 
-    println!("The answer to part 2 is: There are {} matches.", matches);
+    matches
 }
