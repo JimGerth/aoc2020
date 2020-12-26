@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::{self, BufRead};
 
-pub fn part_1() {
+pub fn part_1() -> i32 {
     let file = File::open("src/inputs/day_3.txt").unwrap();
     let mut lines = io::BufReader::new(file).lines().enumerate();
 
@@ -13,7 +13,7 @@ pub fn part_1() {
         }
     }
 
-    println!("The answer to part 1 is {}", trees);
+    trees
 }
 
 struct Slope {
@@ -22,7 +22,7 @@ struct Slope {
     trees: usize,
 }
 
-pub fn part_2() {
+pub fn part_2() -> i64 {
     let file = File::open("src/inputs/day_3.txt").unwrap();
     let mut lines = io::BufReader::new(file).lines().enumerate();
 
@@ -68,10 +68,7 @@ pub fn part_2() {
         }
     }
 
-    println!(
-        "The answer to part 2 is {}",
-        slopes
-            .iter()
-            .fold(1, |product, slope| product * slope.trees)
-    );
+    slopes
+        .iter()
+        .fold(1, |product, slope| product * slope.trees as i64)
 }
