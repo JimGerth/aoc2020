@@ -3,6 +3,8 @@ mod day_2;
 mod day_3;
 mod day_4;
 
+mod tests;
+
 pub fn run(day: i32) {
     match day {
         1 => {
