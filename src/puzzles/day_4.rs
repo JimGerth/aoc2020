@@ -2,7 +2,7 @@ use std::fs;
 
 use regex::Regex;
 
-pub fn part_1() {
+pub fn part_1() -> i32 {
     let input = fs::read_to_string("src/inputs/day_4.txt").unwrap();
     let mut passports = input.split("\n\n");
 
@@ -23,10 +23,10 @@ pub fn part_1() {
         }
     }
 
-    println!("The answer to part 1 is {}", valids);
+    valids
 }
 
-pub fn part_2() {
+pub fn part_2() -> i32 {
     let input = fs::read_to_string("src/inputs/day_4.txt").unwrap();
     let mut passports = input.split("\n\n");
 
@@ -40,7 +40,7 @@ pub fn part_2() {
         }
     }
 
-    println!("The answer to part 2 is {}", valids);
+    valids
 }
 
 fn check_fields(fields: &Vec<&str>) -> bool {
