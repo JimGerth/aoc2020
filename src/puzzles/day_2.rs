@@ -1,11 +1,9 @@
-use std::fs::File;
-use std::io::{self, BufRead};
-
 use regex::Regex;
 
+use super::input;
+
 pub fn part_1() -> i32 {
-    let file = File::open("src/inputs/day_2.txt").unwrap();
-    let mut lines = io::BufReader::new(file).lines();
+    let lines = input::read_lines(2);
 
     // Format of the input lines with capture groups ("(...)")
     // to extract the passowrd rule and passowrd.
@@ -13,7 +11,7 @@ pub fn part_1() -> i32 {
 
     let mut matches = 0;
 
-    while let Some(Ok(line)) = lines.next() {
+    for line in lines {
         // Extract password rule and password from line.
         let caps = regex.captures(line.as_str()).unwrap();
         let letter = caps.get(3).unwrap().as_str();
@@ -46,8 +44,7 @@ pub fn part_1() -> i32 {
 }
 
 pub fn part_2() -> i32 {
-    let file = File::open("src/inputs/day_2.txt").unwrap();
-    let mut lines = io::BufReader::new(file).lines();
+    let lines = input::read_lines(2);
 
     // Format of the input lines with capture groups ("(...)")
     // to extract the passowrd rule and passowrd.
@@ -55,7 +52,7 @@ pub fn part_2() -> i32 {
 
     let mut matches = 0;
 
-    while let Some(Ok(line)) = lines.next() {
+    for line in lines {
         // Extract password rule and password from line.
         let caps = regex.captures(line.as_str()).unwrap();
         let letter = caps.get(3).unwrap().as_str().chars().next().unwrap();
