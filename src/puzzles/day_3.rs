@@ -1,13 +1,11 @@
-use std::fs::File;
-use std::io::{self, BufRead};
+use super::input;
 
 pub fn part_1() -> i32 {
-    let file = File::open("src/inputs/day_3.txt").unwrap();
-    let mut lines = io::BufReader::new(file).lines().enumerate();
+    let lines = input::read_lines(3);
 
     let mut trees = 0;
 
-    while let Some((i, Ok(line))) = lines.next() {
+    for (i, line) in lines.iter().enumerate() {
         if line.chars().nth(i * 3 % line.len()).unwrap() == '#' {
             trees += 1;
         }
@@ -23,8 +21,7 @@ struct Slope {
 }
 
 pub fn part_2() -> i64 {
-    let file = File::open("src/inputs/day_3.txt").unwrap();
-    let mut lines = io::BufReader::new(file).lines().enumerate();
+    let lines = input::read_lines(3);
 
     let mut slopes = vec![
         Slope {
@@ -54,7 +51,7 @@ pub fn part_2() -> i64 {
         },
     ];
 
-    while let Some((i, Ok(line))) = lines.next() {
+    for (i, line) in lines.iter().enumerate() {
         for slope in slopes.iter_mut() {
             if i % slope.down == 0
                 && line
