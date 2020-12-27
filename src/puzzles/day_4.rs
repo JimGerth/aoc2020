@@ -1,9 +1,9 @@
-use std::fs;
-
 use regex::Regex;
 
+use super::input;
+
 pub fn part_1() -> i32 {
-    let input = fs::read_to_string("src/inputs/day_4.txt").unwrap();
+    let input = input::read(4);
     let mut passports = input.split("\n\n");
 
     let mut valids = 0;
@@ -27,7 +27,7 @@ pub fn part_1() -> i32 {
 }
 
 pub fn part_2() -> i32 {
-    let input = fs::read_to_string("src/inputs/day_4.txt").unwrap();
+    let input = input::read(4);
     let mut passports = input.split("\n\n");
 
     let mut valids = 0;
