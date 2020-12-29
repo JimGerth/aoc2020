@@ -21,3 +21,9 @@ fn test_day_4() {
     assert_eq!(super::day_4::part_1(), 213);
     assert_eq!(super::day_4::part_2(), 147);
 }
+
+#[test]
+fn test_day_5() {
+    assert_eq!(super::day_5::part_1(), 838);
+    assert_eq!(super::day_5::part_2(), Some(714));
+}
