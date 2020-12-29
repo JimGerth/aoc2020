@@ -3,12 +3,11 @@ use regex::Regex;
 use super::input;
 
 pub fn part_1() -> i32 {
-    let input = input::read(4);
-    let mut passports = input.split("\n\n");
+    let passports = input::read_paragraphs(4);
 
     let mut valids = 0;
 
-    while let Some(passport) = passports.next() {
+    for passport in passports {
         let fields: Vec<&str> = passport.split_whitespace().collect();
 
         if fields.len() == 8 {
@@ -27,12 +26,11 @@ pub fn part_1() -> i32 {
 }
 
 pub fn part_2() -> i32 {
-    let input = input::read(4);
-    let mut passports = input.split("\n\n");
+    let passports = input::read_paragraphs(4);
 
     let mut valids = 0;
 
-    while let Some(passport) = passports.next() {
+    for passport in passports {
         let fields: Vec<&str> = passport.split_whitespace().collect();
 
         if check_fields(&fields) {
