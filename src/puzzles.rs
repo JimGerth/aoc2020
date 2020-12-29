@@ -5,6 +5,7 @@ mod day_2;
 mod day_3;
 mod day_4;
 mod day_5;
+mod day_6;
 
 mod tests;
 
@@ -34,6 +35,11 @@ pub fn run(day: i32) {
             println!("Running puzzle from day 5...");
             println!("The answer to part 1 is {}.", day_5::part_1());
             println!("The answer to part 2 is {}.", day_5::part_2().expect("<Failed to compute result>"));
+        }
+        6 => {
+            println!("Running puzzle from day 6...");
+            println!("The answer to part 1 is {}.", day_6::part_1());
+            println!("The answer to part 2 is {}.", day_6::part_2());
         }
         _ => println!("Sorry, this puzzle is not implemented yet."),
     }
