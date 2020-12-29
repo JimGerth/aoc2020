@@ -14,6 +14,16 @@ pub fn read(day: i32) -> String {
     ))
 }
 
+/// Reads input file into a list of paragraphs.
+///
+/// Paragraphs are seperated by two newline characters ("\n").
+///
+/// This reads the file at "src/inputs/day_[day].txt" which should be
+/// downloaded from "https://adventofcode.com/2020/day/[day]/input".
+pub fn read_paragraphs(day: i32) -> Vec<String> {
+    read(day).split("\n\n").map(|par| String::from(par)).collect()
+}
+
 /// Read input file of specific challenge.
 ///
 /// This reads the file at "src/inputs/day_[day].txt" which should be
