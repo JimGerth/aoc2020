@@ -6,7 +6,7 @@ mod day_3;
 mod day_4;
 mod day_5;
 mod day_6;
-
+mod day_7;
 mod day_8;
 
 mod tests;
@@ -42,6 +42,11 @@ pub fn run(day: i32) {
             println!("Running puzzle from day 6...");
             println!("The answer to part 1 is {}.", day_6::part_1());
             println!("The answer to part 2 is {}.", day_6::part_2());
+        }
+        7 => {
+            println!("Running puzzle from day 7...");
+            println!("The answer to part 1 is {}.", day_7::part_1());
+            println!("The answer to part 2 is {}.", day_7::part_2());
         }
         8 => {
             println!("Running puzzle from day 8...");
