@@ -16,11 +16,31 @@ pub fn part_1() -> i32 {
 
     // Parse rules.
     for line in &input {
-        let bag_color = bag_color_regex.captures(line).unwrap().get(0).unwrap().as_str();
-        let bag_rules = bag_rules_regex.captures(line).unwrap().get(1).unwrap().as_str();
+        let bag_color = bag_color_regex
+            .captures(line)
+            .unwrap()
+            .get(0)
+            .unwrap()
+            .as_str();
+        let bag_rules = bag_rules_regex
+            .captures(line)
+            .unwrap()
+            .get(1)
+            .unwrap()
+            .as_str();
 
         let bag_rules: HashSet<&str> = if bag_rules != "no other bags" {
-            bag_rules.split(", ").map(|rule| bag_rule_regex.captures(rule).unwrap().get(1).unwrap().as_str()).collect()
+            bag_rules
+                .split(", ")
+                .map(|rule| {
+                    bag_rule_regex
+                        .captures(rule)
+                        .unwrap()
+                        .get(1)
+                        .unwrap()
+                        .as_str()
+                })
+                .collect()
         } else {
             HashSet::new()
         };
@@ -34,7 +54,10 @@ pub fn part_1() -> i32 {
     // Invert rules.
     for (color, contained_colors) in can_contain_rules.iter() {
         for contained_color in contained_colors {
-            contained_in_rules.get_mut(contained_color).unwrap().insert(color);
+            contained_in_rules
+                .get_mut(contained_color)
+                .unwrap()
+                .insert(color);
         }
     }
 
@@ -47,11 +70,19 @@ pub fn part_1() -> i32 {
     containers.len() as i32
 }
 
-fn get_containers<'a>(color: &'a str, contained_in_rules: &'a HashMap<&str, HashSet<&str>>) -> HashSet<&'a str> {
-    let directly_contained_in = contained_in_rules.get(color).expect("Color not listed in rules.");
+fn get_containers<'a>(
+    color: &'a str,
+    contained_in_rules: &'a HashMap<&str, HashSet<&str>>,
+) -> HashSet<&'a str> {
+    let directly_contained_in = contained_in_rules
+        .get(color)
+        .expect("Color not listed in rules.");
     let mut contained_in = directly_contained_in.clone();
     for color in directly_contained_in {
-        contained_in = contained_in.union(&get_containers(color, contained_in_rules)).cloned().collect();
+        contained_in = contained_in
+            .union(&get_containers(color, contained_in_rules))
+            .cloned()
+            .collect();
     }
     contained_in
 }
