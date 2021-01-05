@@ -6,12 +6,14 @@ use std::io::{self, BufRead};
 /// This reads the file at "src/inputs/day_[day].txt" which should be
 /// downloaded from "https://adventofcode.com/2020/day/[day]/input".
 pub fn read(day: i32) -> String {
-    fs::read_to_string(format!("src/inputs/day_{}.txt", day)).expect(&format!(
-        "Problems reading the input file for day {}. \
+    fs::read_to_string(format!("src/inputs/day_{}.txt", day)).unwrap_or_else(|_| {
+        panic!(
+            "Problems reading the input file for day {}. \
             Make sure src/inputs/day_{}.txt exists. \
             If not get it from https://adventofcode.com/2020/day/{}/input",
-        day, day, day
-    ))
+            day, day, day
+        )
+    })
 }
 
 /// Reads input file into a list of paragraphs.
@@ -21,7 +23,7 @@ pub fn read(day: i32) -> String {
 /// This reads the file at "src/inputs/day_[day].txt" which should be
 /// downloaded from "https://adventofcode.com/2020/day/[day]/input".
 pub fn read_paragraphs(day: i32) -> Vec<String> {
-    read(day).split("\n\n").map(|par| String::from(par)).collect()
+    read(day).split("\n\n").map(String::from).collect()
 }
 
 /// Read input file of specific challenge.
@@ -29,12 +31,14 @@ pub fn read_paragraphs(day: i32) -> Vec<String> {
 /// This reads the file at "src/inputs/day_[day].txt" which should be
 /// downloaded from "https://adventofcode.com/2020/day/[day]/input".
 fn read_file(day: i32) -> File {
-    File::open(format!("src/inputs/day_{}.txt", day)).expect(&format!(
-        "Problems reading the input file for day {}. \
+    File::open(format!("src/inputs/day_{}.txt", day)).unwrap_or_else(|_| {
+        panic!(
+            "Problems reading the input file for day {}. \
             Make sure src/inputs/day_{}.txt exists. \
             If not get it from https://adventofcode.com/2020/day/{}/input",
-        day, day, day
-    ))
+            day, day, day
+        )
+    })
 }
 
 /// Reads input file into a list of lines.
@@ -59,7 +63,7 @@ pub fn read_numbers(day: i32) -> Vec<i32> {
         .map(|line| {
             line.unwrap()
                 .parse()
-                .expect(&format!(
+                .unwrap_or_else(|_| panic!(
                     "Problems while parsing input file src/inputs/day_{}.txt. \
                     Non numeric value in file. \
                     Consider replacing with official input file from https://adventofcode.com/2020/day/{}/input.",
