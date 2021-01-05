@@ -16,7 +16,7 @@ pub fn part_1() -> i32 {
             }
         }
 
-        sum += answers.values().fold(0, |sum, x| sum + x);
+        sum += answers.values().sum::<i32>();
     }
 
     sum

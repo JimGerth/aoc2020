@@ -41,7 +41,7 @@ pub fn part_2() -> i32 {
     valids
 }
 
-fn check_fields(fields: &Vec<&str>) -> bool {
+fn check_fields(fields: &[&str]) -> bool {
     let mut byr = false;
     let mut iyr = false;
     let mut eyr = false;
@@ -52,27 +52,32 @@ fn check_fields(fields: &Vec<&str>) -> bool {
 
     for field in fields.iter() {
         match &field[..3] {
-            "byr" => match field[4..].parse::<i32>() {
-                Ok(value) => byr = value >= 1920 && value <= 2002,
-                _ => {}
-            },
-            "iyr" => match field[4..].parse::<i32>() {
-                Ok(value) => iyr = value >= 2010 && value <= 2020,
-                _ => {}
-            },
-            "eyr" => match field[4..].parse::<i32>() {
-                Ok(value) => eyr = value >= 2020 && value <= 2030,
-                _ => {}
-            },
+            "byr" => {
+                if let Ok(value) = field[4..].parse::<i32>() {
+                    byr = (1920..=2002).contains(&value)
+                }
+            }
+            "iyr" => {
+                if let Ok(value) = field[4..].parse::<i32>() {
+                    iyr = (2010..=2020).contains(&value)
+                }
+            }
+            "eyr" => {
+                if let Ok(value) = field[4..].parse::<i32>() {
+                    eyr = (2020..=2030).contains(&value)
+                }
+            }
             "hgt" => match &field[field.len() - 2..] {
-                "cm" => match field[4..field.len() - 2].parse::<i32>() {
-                    Ok(value) => hgt = value >= 150 && value <= 193,
-                    _ => {}
-                },
-                "in" => match field[4..field.len() - 2].parse::<i32>() {
-                    Ok(value) => hgt = value >= 59 && value <= 76,
-                    _ => {}
-                },
+                "cm" => {
+                    if let Ok(value) = field[4..field.len() - 2].parse::<i32>() {
+                        hgt = (150..=193).contains(&value)
+                    }
+                }
+                "in" => {
+                    if let Ok(value) = field[4..field.len() - 2].parse::<i32>() {
+                        hgt = (59..=76).contains(&value)
+                    }
+                }
                 _ => {}
             },
             "hcl" => {
