@@ -65,18 +65,18 @@ mod computation {
         pub fn from(instruction: &str) -> Result<Instruction, &str> {
             match &instruction[..3] {
                 "acc" => match instruction[4..].parse::<i32>() {
-                    Ok(number) => return Ok(Instruction::Accumulate(number)),
-                    Err(_) => return Err("Could not parse number from accumulate instruction."),
+                    Ok(number) => Ok(Instruction::Accumulate(number)),
+                    Err(_) => Err("Could not parse number from accumulate instruction."),
                 },
                 "jmp" => match instruction[4..].parse::<i32>() {
-                    Ok(offset) => return Ok(Instruction::Jump(offset)),
-                    Err(_) => return Err("Could not parse offset from jump instruction."),
+                    Ok(offset) => Ok(Instruction::Jump(offset)),
+                    Err(_) => Err("Could not parse offset from jump instruction."),
                 },
                 "nop" => match instruction[4..].parse::<i32>() {
-                    Ok(number) => return Ok(Instruction::NoOperation(number)),
-                    Err(_) => return Err("Could not parse number from no operation instruction."),
+                    Ok(number) => Ok(Instruction::NoOperation(number)),
+                    Err(_) => Err("Could not parse number from no operation instruction."),
                 },
-                _ => return Err("Unknown instruction. Must be acc, jmp or nop"),
+                _ => Err("Unknown instruction. Must be acc, jmp or nop"),
             }
         }
     }
@@ -185,7 +185,7 @@ mod computation {
         ///
         /// Returns None if the latest program has not been run.
         pub fn status(&self) -> Option<Termination> {
-            self.status.clone()
+            self.status
         }
     }
 }
