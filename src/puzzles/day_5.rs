@@ -19,7 +19,7 @@ pub fn part_2() -> Option<i32> {
     let codes = input::read_lines(5);
 
     let mut ids: Vec<i32> = codes.iter().map(|code| get_id(code)).collect();
-    ids.sort();
+    ids.sort_unstable();
 
     for (i, id) in ids[..ids.len() - 1].iter().enumerate() {
         if id + 2 == ids[i + 1] {
@@ -36,8 +36,8 @@ fn get_id(code: &str) -> i32 {
 
     for (i, letter) in code.chars().enumerate() {
         match letter {
-            'B' => row += 1 << 6 - i,
-            'R' => col += 1 << 2 - (i - 7),
+            'B' => row += 1 << (6 - i),
+            'R' => col += 1 << (2 - (i - 7)),
             _ => {}
         }
     }
